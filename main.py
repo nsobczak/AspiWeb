@@ -8,19 +8,17 @@
 
 # Import
 import logging
+import logging.config
 import argparse
 import os
 import sys
 import urllib
 import urllib3
-import logging.config
-import bs4
+
+# import bs4
 
 
 # ____________________________________________________________________________________________________
-# ____________________________________________________________________________________________________
-
-
 # ____________________________________________________________________________________________________
 # Fonctions d'initialisation
 
@@ -29,15 +27,17 @@ def initLog():
     log format
     logging.basicConfig(datefmt='', format='%asctime', level=logging.INFO)
     """
-    logging.basicConfig(
-        filename="AspiWeb.log", \
-        datefmt="%d/%m/%Y-%H:%M:%S", \
-        format="%(asctime)s %(levelname)s %(funcName)s %(message)s", \
-        level=logging.INFO)  # 'filename': '/path/to/DirectorySupervisor.debug.log',
-    logging.info("Programme lance")
+    logging.config.fileConfig("AspiWebLog.conf")
+    # definition du handler
+    main_logger = logging.getLogger("test_log")
+
+    main_logger.info("Programme lance")
+    # main_logger.critical("Ceci est une erreur critique !")
+    # main_logger.warning("Ceci est un message de debogage !")
+    return main_logger
 
 
-def initVariables():
+def initVariables(logger):
     """
     Fonction qui initialise les variables en fonction de ce que l'utilisateur a entre.
     La fonction genere une info recapitulant la liste des parametres entres.
@@ -48,14 +48,14 @@ def initVariables():
     parser.add_argument("url", type=str, help="url of the website to download")
     parser.add_argument("logConf", type=str, help="path to the configuration file of the logger")
     # optionnel
-    parser.add_argument("-d", "--depth", default=2, help="depth of the tree, default = 2")
-    parser.add_argument("-sf", "--sizeFile", default=10, help="max size of a downloadable file")
-    parser.add_argument("-sd", "--sizeDirectory", default=100,
+    parser.add_argument("-d", "--depth", type=int, default=2, help="depth of the tree, default = 2")
+    parser.add_argument("-sf", "--sizeFile", type=int, default=10, help="max size of a downloadable file")
+    parser.add_argument("-sd", "--sizeDirectory", type=int, default=100,
                         help="size max of the directory where to download the website")
 
-    # affichage des arguments rentres
+    # affichage des arguments rentres dans le log
     args = parser.parse_args()
-    logging.info(
+    logger.info(
         ":\npath to the directory where to save the downloaded website: %s\n" + \
         "url of the website to download: %s \npath to the configuration file of the logger: %s\n" + \
         "depth of the tree: %d\nmax size of a downloadable file: %d\nsize max of the directory where to download the website: %d\n",
@@ -69,7 +69,7 @@ def initVariables():
 # ___________________________________________________________________________________________________
 # Fonctions principales
 
-def loop():
+def loop(logger):
     """
     fonction principale
     """
@@ -80,15 +80,10 @@ def loop():
 # ____________________________________________________________________________________________________
 # ____________________________________________________________________________________________________
 def monMain():
-    logging.config.fileConfig("mon_log.conf")
-    main_logger = logging.getLogger("test_log")
+    main_logger = initLog()
+    initVariables(main_logger)
+    loop(main_logger)
 
-    main_logger.critical("Ceci est une erreur critique !")
-    main_logger.warning("Ceci est un message de debogage !")
-    initVariables()
-    initLog()
-    loop()
-    
-if __name__=="__main__":
+
+if __name__ == "__main__":
     monMain()
-
