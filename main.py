@@ -13,7 +13,8 @@ import os
 import sys
 import urllib
 import urllib3
-#import bs4
+import logging.config
+import bs4
 
 
 # ____________________________________________________________________________________________________
@@ -79,10 +80,15 @@ def loop():
 # ____________________________________________________________________________________________________
 # ____________________________________________________________________________________________________
 def monMain():
+    logging.config.fileConfig("mon_log.conf")
+    main_logger = logging.getLogger("test_log")
+
+    main_logger.critical("Ceci est une erreur critique !")
+    main_logger.warning("Ceci est un message de debogage !")
     initVariables()
     initLog()
     loop()
-
-
-if __name__ == "__main__":
+    
+if __name__=="__main__":
     monMain()
+
