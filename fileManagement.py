@@ -17,6 +17,7 @@ import os
 # %% ____________________________________________________________________________________________________
 #   ____________________________________________________________________________________________________
 #   Fonctions
+
 def fileWrite(path, fileName, chaineAEcrire):
     """
     fonction qui ecrit une chaine de caracteres dans un fichier
@@ -30,6 +31,18 @@ def fileWrite(path, fileName, chaineAEcrire):
     f = open(fileName, 'w')
     f.writelines(chaineAEcrire)
     f.close()
+
+
+# %%___________________________________________________________________________________________________
+def searchStringInString(stringAAnalyser, stringARechercher):
+    """
+    Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
+    :return: une liste contenant le nombre de <href="> puis le nombre de <src=">
+    """
+
+    result = stringAAnalyser.count(stringARechercher)
+    print("nombre d'iterations de " + stringARechercher + " = " + str(result))
+    return result
 
 
 def fileReplace(fileName):
@@ -49,8 +62,12 @@ def fileReplace(fileName):
     # %% Remplacement
     longueur = len(html)
     i = 0
+    """
     while (i < longueur):
-        
+
         i+=1
+    """
+
+    searchStringInString(html, "href")
 
     return html
