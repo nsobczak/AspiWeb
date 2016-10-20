@@ -6,7 +6,7 @@
 @author: Nicolas Sobczak
 """
 
-#%% TODO : fonction qui ecrit une chaine de caracteres dans un fichier
+# %% TODO : finir la fonction qui remplace les url d'un fichier html
 #  ____________________________________________________________________________________________________
 #  Config
 
@@ -14,7 +14,7 @@
 import os
 
 
-#%% ____________________________________________________________________________________________________
+# %% ____________________________________________________________________________________________________
 #   ____________________________________________________________________________________________________
 #   Fonctions
 def fileWrite(path, fileName, chaineAEcrire):
@@ -23,10 +23,10 @@ def fileWrite(path, fileName, chaineAEcrire):
     :return: void
     """
 
-    #%% Repertoire             # os.path.join(path, fileName) si besoin
+    # %% Repertoire             # os.path.join(path, fileName) si besoin
     os.chdir(path)
 
-    #%% Creation et Ecriture
+    # %% Creation et Ecriture
     f = open(fileName, 'w')
     f.writelines(chaineAEcrire)
     f.close()
@@ -38,12 +38,19 @@ def fileReplace(fileName):
     :return: void
     """
 
-    #%% Repertoire             # os.path.join(path, fileName) si besoin
+    # %% Repertoire             # os.path.join(path, fileName) si besoin
     path = os.getcwd()
 
-    #%% Lecture et remplacement
+    # %% Lecture
     f = open(fileName, 'r')
-    test = f.readlines()
+    html = f.readlines()
     f.close()
 
-    return test
+    # %% Remplacement
+    longueur = len(html)
+    i = 0
+    while (i < longueur):
+        
+        i+=1
+
+    return html
