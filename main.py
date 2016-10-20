@@ -180,6 +180,10 @@ def loop(logger, args):
 
     """
     fM.fileWrite(args.savePath, "page.html", chaineTest)
+
+    logger.info(
+        ":\nFichier lu: %s\n", fM.fileReplace("page.html"))
+
     return 1
 
 

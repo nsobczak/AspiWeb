@@ -32,3 +32,18 @@ def fileWrite(path, fileName, chaineAEcrire):
     f.close()
 
 
+def fileReplace(fileName):
+    """
+    Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
+    :return: void
+    """
+
+    #%% Repertoire             # os.path.join(path, fileName) si besoin
+    path = os.getcwd()
+
+    #%% Lecture et remplacement
+    f = open(fileName, 'r')
+    test = f.readlines()
+    f.close()
+
+    return test
