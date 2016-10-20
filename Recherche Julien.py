@@ -1,21 +1,21 @@
-import urllib
+import urllib.request as ur
 import os
 import webbrowser
 import zipfile
-import bs4 as BeautifulSoup
+from bs4 import BeautifulSoup
 
 def openPage(url):      #Ouvre une page WEB
     webbrowser.open(url)
 
 def downloadFile(url, filename):        #telecharge un fichier WEB
-    urllib.urlretrieve(url, filename)
+    ur.urlretrieve(url, filename)
 
 def soup(html):         #Lecture HTML avec recuperation des href
     soup = BeautifulSoup(html)
     print(soup)
 
 def read(link):         #Lecture du HTML de la page
-    page = urllib.urlopen(link)
+    page = ur.urlopen(link)
     strpage = page.read()
     print(strpage)
 
@@ -28,7 +28,7 @@ def monMain():
     #openPage(url)
     #downloadFile(url, filename)
     html = read(link)
-    soup(html)
+    #soup(html)
 
 if __name__ == "__main__":
     monMain()
