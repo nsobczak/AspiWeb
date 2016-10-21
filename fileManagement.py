@@ -34,14 +34,17 @@ def fileWrite(path, fileName, chaineAEcrire):
 
 
 # %%___________________________________________________________________________________________________
-def searchStringInString(stringAAnalyser, stringARechercher):
+def needLinkToBeReplace(stringAAnalyser):
     """
-    Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
-    :return: une liste contenant le nombre de <href="> puis le nombre de <src=">
+    Fonction qui examine un lien et determine s'il doit etre remplace par un lien locale ou ignore s'il s'agit d'un lien externe
+    :return: booleen true si le lien doit etre remplace,
+                    false sinon
     """
 
-    result = stringAAnalyser.count(stringARechercher)
-    print("nombre d'iterations de " + stringARechercher + " = " + str(result))
+    if ((stringAAnalyser[0] == 'w') and (stringAAnalyser[1] == 'w') and (stringAAnalyser[2] == 'w') ):
+        result = False
+    else:
+        result = True
     return result
 
 
@@ -68,6 +71,9 @@ def fileReplace(fileName):
         i+=1
     """
 
-    searchStringInString(html, "href")
+    # Test
+    # On recupere: images/code-couleur.gif
+    print ( needLinkToBeReplace('images/code-couleur.gif') )
+    print ( needLinkToBeReplace('www.images.com/code-couleur.gif') )
 
     return html
