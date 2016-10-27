@@ -45,20 +45,21 @@ def isLinkRelativ(link):
     return result
 
 
-def getDomain(urlSiteAAspirer):
+def getDomain(link):
     """
     fonction qui recupere le nom de domaine du site a partir de son url
     :return: String = nom de domaine du site
     Le site peut etre des formes suivantes: https://www.<domain> | https://<domain> | http://www.<domain> | http://<domain> | www.<domain>
     """
-    #print("\nurlSiteAAspirer:", urlSiteAAspirer," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
-    domain = urlSiteAAspirer
-    if not isLinkRelativ(urlSiteAAspirer):
-        if (urlSiteAAspirer.find('www.') != -1):
-            domain = urlSiteAAspirer.split('www.')[-1]
+
+    #print("\nlink:", link," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
+    domain = link
+    if not isLinkRelativ(link):
+        if (link.find('www.') != -1):
+            domain = link.split('www.')[-1]
             domain = domain.split('/')[0]
-        elif (urlSiteAAspirer.find('://') != -1):
-            domain = urlSiteAAspirer.split('://')[-1]
+        elif (link.find('://') != -1):
+            domain = link.split('://')[-1]
             domain = domain.split('/')[0]
         else:
             domain = "ERROR" + domain
@@ -73,11 +74,15 @@ def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
     :return: booleen true si le lien doit etre remplace,
                     false sinon
     """
+    result = True
     if isLinkRelativ(stringAAnalyser):
         result = False
     else:
-        getDomain(stringAAnalyser) # <= a remplacer par : urlSiteAAspirer
-        result = True
+        # comparaison du domaine du lien a celui de l'url du site a aspirer
+        refDomain = getDomain(urlSiteAAspirer)
+        analyzedDomain = getDomain(stringAAnalyser)
+        if (refDomain == analyzedDomain):
+            result = False
     return result
 
 
@@ -103,6 +108,10 @@ def fileReplace(fileName, urlSiteAAspirer):
 
         i+=1
     """
+    # link = html     # <= a remplacer par un lien (il faudra utiliser la fonction de recuperation des liens du module bs4 ?)
+    # refDomain = getDomain(urlSiteAAspirer)
+    # analyzedDomain = getDomain(link)
+    # link.replace(analyzedDomain, '')
 
     # Test
     # On recupere: images/code-couleur.gif
