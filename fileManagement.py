@@ -74,15 +74,13 @@ def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
     :return: booleen true si le lien doit etre remplace,
                     false sinon
     """
-    result = True
-    if isLinkRelativ(stringAAnalyser):
-        result = False
-    else:
-        # comparaison du domaine du lien a celui de l'url du site a aspirer
+    result = False
+    if not isLinkRelativ(stringAAnalyser):
+        # %% comparaison du domaine du lien a celui de l'url du site a aspirer
         refDomain = getDomain(urlSiteAAspirer)
         analyzedDomain = getDomain(stringAAnalyser)
         if (refDomain == analyzedDomain):
-            result = False
+            result = True
     return result
 
 
@@ -101,20 +99,14 @@ def fileReplace(fileName, urlSiteAAspirer):
     f.close()
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    longueur = len(html)
-    i = 0
-    """
-    while (i < longueur):
-
-        i+=1
-    """
     # link = html     # <= a remplacer par un lien (il faudra utiliser la fonction de recuperation des liens du module bs4 ?)
-    # refDomain = getDomain(urlSiteAAspirer)
-    # analyzedDomain = getDomain(link)
-    # link.replace(analyzedDomain, '')
+    # if (needLinkToBeReplace(link, urlSiteAAspirer)):
+    #     refDomain = getDomain(urlSiteAAspirer)
+    #     analyzedDomain = getDomain(link)
+    #     link.replace(analyzedDomain, '')
 
     # Test
-    # On recupere: images/code-couleur.gif
+    # On recupere les liens sous la forme: images/code-couleur.gif
     print ("needLinkToBeReplace: ", needLinkToBeReplace('images/code-couleur.gif', urlSiteAAspirer) )
     print ("needLinkToBeReplace: ", needLinkToBeReplace('www.images.com/code-couleur.gif', urlSiteAAspirer) )
     print("needLinkToBeReplace: ", needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', urlSiteAAspirer))
