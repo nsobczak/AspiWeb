@@ -51,15 +51,19 @@ def getDomain(urlSiteAAspirer):
     :return: String = nom de domaine du site
     Le site peut etre des formes suivantes: https://www.<domain> | https://<domain> | http://www.<domain> | http://<domain> | www.<domain>
     """
-    print("\nurlSiteAAspirer:", urlSiteAAspirer," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
+    #print("\nurlSiteAAspirer:", urlSiteAAspirer," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
     domain = urlSiteAAspirer
     if not isLinkRelativ(urlSiteAAspirer):
         if (urlSiteAAspirer.find('www.') != -1):
-            print(urlSiteAAspirer.split('www.'))
             domain = urlSiteAAspirer.split('www.')[-1]
             domain = domain.split('/')[0]
-            print("domaine: ", domain)
+        elif (urlSiteAAspirer.find('://') != -1):
+            domain = urlSiteAAspirer.split('://')[-1]
+            domain = domain.split('/')[0]
+        else:
+            domain = "ERROR" + domain
 
+    #print("domaine: ", domain)
     return domain
 
 
@@ -104,5 +108,7 @@ def fileReplace(fileName, urlSiteAAspirer):
     # On recupere: images/code-couleur.gif
     print ("needLinkToBeReplace: ", needLinkToBeReplace('images/code-couleur.gif', urlSiteAAspirer) )
     print ("needLinkToBeReplace: ", needLinkToBeReplace('www.images.com/code-couleur.gif', urlSiteAAspirer) )
+    print("needLinkToBeReplace: ", needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', urlSiteAAspirer))
+    print("needLinkToBeReplace: ", needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', urlSiteAAspirer))
 
     return html
