@@ -6,13 +6,14 @@ but = aspirer un site
 
 ### parametres
 
-- chemin où stocker le site sur notre pc
-- website à télécharger
-- nom de fichier de conf des logger
-- profondeur maxi de l'arbre à parcourir
-- taille maxi du fichier que l'on peut télécharger
-
-- variable qui dit la taille maxi que le dossier dans lequel on met le site ne doit pas dépasser
+|Paramètre|Type|Variable|
+|---|---|---|
+|chemin où stocker le site sur notre pc|obligatoire|savePath|
+|website à télécharger|obligatoire|url|
+|nom de fichier de conf des logger|obligatoire|logConf|
+|profondeur maxi de l'arbre à parcourir|optionnel|"-d", "--depth"|
+|taille maxi du fichier que l'on peut télécharger|optionnel|"-sf", "--sizeFile"|
+|taille maxi que le dossier dans lequel on met le site ne doit pas dépasser|optionnel|"-sd", "--sizeDirectory"|
 
 
 ### imposé
