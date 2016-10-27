@@ -99,11 +99,11 @@ def fileReplace(fileName, urlSiteAAspirer):
     f.close()
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    # link = html     # <= a remplacer par un lien (il faudra utiliser la fonction de recuperation des liens du module bs4 ?)
-    # if (needLinkToBeReplace(link, urlSiteAAspirer)):
-    #     refDomain = getDomain(urlSiteAAspirer)
-    #     analyzedDomain = getDomain(link)
-    #     link.replace(analyzedDomain, '')
+    link = ''.join(html)     # <= a remplacer par un lien (il faudra utiliser la fonction de recuperation des liens du module bs4 ?)
+    if (needLinkToBeReplace(link, urlSiteAAspirer)):
+        refDomain = getDomain(urlSiteAAspirer)
+        analyzedDomain = getDomain(link)
+        link.replace(analyzedDomain, os.path.join(path, refDomain))
 
     # Test
     # On recupere les liens sous la forme: images/code-couleur.gif
