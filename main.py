@@ -182,7 +182,7 @@ def loop(logger, args):
     fM.fileWrite(args.savePath, "page.html", chaineTest)
 
     logger.info(
-        ":\nFichier lu: %s\n", fM.fileReplace("page.html"))
+        ":\nFichier lu: %s\n", fM.fileReplace("page.html", args.url))
 
     return 1
 
