@@ -22,12 +22,15 @@ but = aspirer un site
 - main
 
 ### piste
-urllib 
-urllib2
-os
-argpase
-sys
-bs4
+
+|Librairie|Disponibilité|
+|---|---|
+|urllib| python 2|
+|urllib2| python 2|
+|os|python 3|
+|argpase|python 3|
+|sys||
+|bs4|python 3|
 
 
 ## Architecture
