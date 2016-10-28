@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 #   ____________________________________________________________________________________________________
 #   Fonctions
 
-def affiche(url):
+def listOfLinks(url):
     """
     Affiche le code html pour une url
     :param url: url du code html a afficher
@@ -38,7 +38,7 @@ def affiche(url):
         hrefs = []
         for link in links:
             hrefs += [link.get('href')]
-        print(hrefs)
+        #print(hrefs)
         return (hrefs)
 
     except:
