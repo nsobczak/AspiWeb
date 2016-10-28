@@ -23,7 +23,7 @@ def listOfLinks(url):
     Renvoie la liste des liens contenus dans une page html pour une url
     :param url: url du code html a afficher
     :type url: str
-    :return: return list of links contained in html page
+    :return: return content of an html page and its list of links
     :rtype: list
     """
     try:
