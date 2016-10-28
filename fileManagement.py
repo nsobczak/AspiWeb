@@ -1,7 +1,7 @@
 """
-#######
-# TP2 #
-#######
+###########
+# AspiWeb #
+###########
 
 @author: Nicolas Sobczak
 """
@@ -12,6 +12,7 @@
 
 # Import
 import os
+import scrapingWeb as sW
 
 
 # %% ____________________________________________________________________________________________________
@@ -99,11 +100,13 @@ def fileReplace(fileName, urlSiteAAspirer):
     f.close()
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    link = ''.join(html)     # <= a remplacer par un lien (il faudra utiliser la fonction de recuperation des liens du module bs4 ?)
-    if (needLinkToBeReplace(link, urlSiteAAspirer)):
-        refDomain = getDomain(urlSiteAAspirer)
-        analyzedDomain = getDomain(link)
-        link.replace(analyzedDomain, os.path.join(path, refDomain))
+    linkList = sW.affiche(urlSiteAAspirer)
+    for link in linkList:
+        print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
+        if (needLinkToBeReplace(link, urlSiteAAspirer)):
+            refDomain = getDomain(urlSiteAAspirer)
+            analyzedDomain = getDomain(link)
+            link.replace(analyzedDomain, os.path.join(path, refDomain))
 
     # Test
     # On recupere les liens sous la forme: images/code-couleur.gif

@@ -1,7 +1,7 @@
 """
-#######
-# TP2 #
-#######
+###########
+# AspiWeb #
+###########
 
 @author: Julien Vermeil and Vincent Reaynaert and Nicolas Sobczak
 """
@@ -179,7 +179,7 @@ def loop(logger, args):
 </html>
 
     """
-    fM.fileWrite(args.savePath, "page.html", chaineTest)
+    fM.fileWrite(args.savePath, "page.html", args.url)
 
     logger.info(
         ":\nFichier lu: %s\n", fM.fileReplace("page.html", args.url))
