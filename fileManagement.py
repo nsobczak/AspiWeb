@@ -122,7 +122,7 @@ def fileReplace(fileName, urlSiteAAspirer):
     f.close()
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    linkList = sW.affiche(urlSiteAAspirer)
+    linkList = sW.listOfLinks(urlSiteAAspirer)
     for link in linkList:
         print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
         if (needLinkToBeReplace(link, urlSiteAAspirer)):
