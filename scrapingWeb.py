@@ -25,11 +25,15 @@ def extractHTML(url):
     :return: return content of an html page
     :rtype: bs4.BeautifulSoup
     """
-    r = req.get(url)  # recuperation de l'url
-    soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
-    #prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
-    return soup
-
+    try :
+        r = req.get(url)  # recuperation de l'url
+        soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
+        #prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
+        return soup
+    except:
+        print("\nVeuillez entrer une url valide.\n")
+        return None
+        pass
 
 # %%___________________________________________________________________________________________________
 
@@ -41,19 +45,15 @@ def listOfLinks(soup):
     :return: return list of links of the html code
     :rtype: list
     """
-    try:
-        links = soup.find_all('a')
+    links = soup.find_all('a')
 
-        # Creation de la liste
-        hrefs = []
-        for link in links:
-            hrefs += [link.get('href')]
-        return (hrefs)
+    # Creation de la liste
+    hrefs = []
+    for link in links:
+        hrefs += [link.get('href')]
+    return (hrefs)
 
-    except:
-        print("\nVeuillez entrer une url valide.\n")
-        return None
-        pass
+
 
 # %%___________________________________________________________________________________________________
 
@@ -65,24 +65,20 @@ def listOfImages(soup):
     :return: return list of images contained in html page
     :rtype: list
     """
-    try:
-        images = soup.find_all('img')
+    images = soup.find_all('img')
 
-        # Creation de la liste
-        srcs = []
-        for img in images:
-            srcs += [img.get('src')]
-        return (srcs)
+    # Creation de la liste
+    srcs = []
+    for img in images:
+        srcs += [img.get('src')]
+    return (srcs)
 
-    except:
-        print("\nVeuillez entrer une url valide.\n")
-        return None
-        pass
 
 # %% Test
-url = "http://localhost/EatMVC/index.php?action=accueil"
-print(listOfImages(url))
-print(listOfLinks(url))
+url = "http://localhost/TestPhpStorm/index.php"
+soup = extractHTML(url)
+print(listOfImages(soup))
+print(listOfLinks(soup))
 # url1 = ""
 # listOfImages(url1)
 # listOfLinks(url1)
