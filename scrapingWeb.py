@@ -76,8 +76,8 @@ def listOfImages(url):
 
 # %% Test
 url = "http://localhost/EatMVC/index.php?action=accueil"
-listOfImages(url)
-listOfLinks(url)
+print(listOfImages(url))
+print(listOfLinks(url))
 # url1 = ""
 # listOfImages(url1)
 # listOfLinks(url1)
