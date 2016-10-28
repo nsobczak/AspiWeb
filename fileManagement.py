@@ -51,7 +51,7 @@ def isLinkRelativ(link):
     :rtype: bool
     """
     result = True
-    if ((link.find('www') != -1) or (link.find('http') != -1)):
+    if ((link.find('www') != -1) or (link.find('http') != -1) or link.find('php') != -1):
         result = False
     return result
 
@@ -75,6 +75,13 @@ def getDomain(link):
         elif (link.find('://') != -1):
             domain = link.split('://')[-1]
             domain = domain.split('/')[0]
+
+        # # %% Comment traiter le cas suivant ?
+        # # cas ou on a link = "http://localhost/EatMVC/index.php?action=accueil"
+        # elif (link.find('.php')) != -1 :
+        #     domain = link.split('.php')[0]
+        #     domain = domain.split('/')[-1]
+
         else:
             domain = "ERROR" + domain
 
