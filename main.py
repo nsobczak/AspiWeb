@@ -96,11 +96,11 @@ def loop(logger, args):
     r = req.get(args.url)  # recuperation de l'url
     soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
     prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
-    fM.fileWrite(args.savePath, "page.html", prettiSoup)
+    fM.fileWrite(args.savePath, "index.html", prettiSoup)
 
     # Recuperation du contenu du fichier precedemment enregistre, analyse de ses liens et remplacement si necessaire
     logger.info(
-        ":\nFichier lu: %s\n", fM.fileReplace("page.html", args.url))
+        ":\nFichier lu: %s\n", fM.fileReplace("index.html", args.url))
 
     # Test
     # On recupere les liens sous la forme: images/code-couleur.gif
