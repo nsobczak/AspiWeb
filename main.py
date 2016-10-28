@@ -92,15 +92,19 @@ def loop(logger, args):
     logger.info(
         ":\nLoop end if directory size reach: %d\n", args.sizeDirectory)
 
+    # Creation des dossiers necessaires
+    domain = fM.getDomain(args.url)
+    os.makedirs(os.path.join(args.savePath, domain, "pictures"),
+                mode=0o0777)  # Ne marche que si les repertoires n'ont pas deja ete crees
+
     # Recuperation du contenu de la page html et enregistrement dans un fichier
     r = req.get(args.url)  # recuperation de l'url
     soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
     prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
-    fM.fileWrite(args.savePath, "index.html", prettiSoup)
+    fM.fileWrite(os.path.join(args.savePath, domain), "index.html", prettiSoup)
 
     # Recuperation du contenu du fichier precedemment enregistre, analyse de ses liens et remplacement si necessaire
-    logger.info(
-        ":\nFichier lu: %s\n", fM.fileReplace("index.html", args.url))
+    logger.info(":\nFichier lu: %s\n", fM.fileReplace("index.html", args.url))
 
     # Test
     # On recupere les liens sous la forme: images/code-couleur.gif
@@ -112,6 +116,8 @@ def loop(logger, args):
           fM.needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', args.url))
     print("needLinkToBeReplace: 'https://www.youtube.com/watch?v=M6JpxDebokM' -> ",
           fM.needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', args.url))
+
+    logger.info(":\nEnd of loop function")
 
     return 1
 
