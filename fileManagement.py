@@ -21,8 +21,15 @@ import scrapingWeb as sW
 
 def fileWrite(path, fileName, chaineAEcrire):
     """
-    fonction qui ecrit une chaine de caracteres dans un fichier
-    :return: void
+    Fonction qui ecrit une chaine de caracteres dans un fichier
+    :param path: chemin du fichier dans lequel ecrire
+    :param fileName: nom du fichier dans lequel ecrire
+    :param chaineAEcrire: chaine de caracteres a ecrire dans le fichier
+    :type path: str
+    :type fileName: str
+    :type chaineAEcrire: str
+    :return: return nothing
+    :rtype: void
     """
 
     # %% Repertoire             # os.path.join(path, fileName) si besoin
@@ -37,8 +44,11 @@ def fileWrite(path, fileName, chaineAEcrire):
 # %%___________________________________________________________________________________________________
 def isLinkRelativ(link):
     """
-    fonction qui analyse si un lien est relatif ou pas
-    :return: 1 booleen
+    Fonction qui analyse si un lien est relatif ou pas
+    :param link: lien a analyser
+    :type link: str
+    :return: return 1 booleen correspondant a la reponse
+    :rtype: bool
     """
     result = True
     if ((link.find('www') != -1) or (link.find('http') != -1)):
@@ -48,12 +58,15 @@ def isLinkRelativ(link):
 
 def getDomain(link):
     """
-    fonction qui recupere le nom de domaine du site a partir de son url
-    :return: String = nom de domaine du site
+    Fonction qui recupere le nom de domaine du site a partir de son url
     Le site peut etre des formes suivantes: https://www.<domain> | https://<domain> | http://www.<domain> | http://<domain> | www.<domain>
+    :param link: lien a analyser
+    :type link: str
+    :return: return le nom de domaine du site
+    :rtype: str
     """
 
-    #print("\nlink:", link," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
+    # print("\nlink:", link," | isLinkRelativ: ", isLinkRelativ(urlSiteAAspirer))
     domain = link
     if not isLinkRelativ(link):
         if (link.find('www.') != -1):
@@ -65,15 +78,19 @@ def getDomain(link):
         else:
             domain = "ERROR" + domain
 
-    #print("domaine: ", domain)
+    # print("domaine: ", domain)
     return domain
 
 
 def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
     """
     Fonction qui examine un lien et determine s'il doit etre remplace par un lien local ou ignore s'il s'agit d'un lien externe
-    :return: booleen true si le lien doit etre remplace,
-                    false sinon
+    :param stringAAnalyser: lien a analyser
+    :param urlSiteAAspirer: url du site a aspirer
+    :type stringAAnalyser: str
+    :type urlSiteAAspirer: str
+    :return: True si le lien doit etre remplace, False sinon
+    :rtype: bool
     """
     result = False
     if not isLinkRelativ(stringAAnalyser):
@@ -87,8 +104,13 @@ def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
 
 def fileReplace(fileName, urlSiteAAspirer):
     """
-    Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
-    :return: void
+    Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
+    :param fileName: nom du fichier dans lequel remplacer les liens
+    :param urlSiteAAspirer: url du site a aspirer
+    :type fileName: str
+    :type urlSiteAAspirer: str
+    :return: nothing
+    :rtype: void
     """
 
     # %% Repertoire             # os.path.join(path, fileName) si besoin
@@ -108,11 +130,6 @@ def fileReplace(fileName, urlSiteAAspirer):
             analyzedDomain = getDomain(link)
             link.replace(analyzedDomain, os.path.join(path, refDomain))
 
-    # Test
-    # On recupere les liens sous la forme: images/code-couleur.gif
-    print ("needLinkToBeReplace: ", needLinkToBeReplace('images/code-couleur.gif', urlSiteAAspirer) )
-    print ("needLinkToBeReplace: ", needLinkToBeReplace('www.images.com/code-couleur.gif', urlSiteAAspirer) )
-    print("needLinkToBeReplace: ", needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', urlSiteAAspirer))
-    print("needLinkToBeReplace: ", needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', urlSiteAAspirer))
-
     return html
+
+# %%___________________________________________________________________________________________________

@@ -20,8 +20,8 @@ import sys
 import urllib
 import urllib3
 
-
-# import bs4
+import requests as req
+from bs4 import BeautifulSoup
 
 
 # %%____________________________________________________________________________________________________
@@ -31,8 +31,9 @@ import urllib3
 def initLog():
     """
     log format
-    logging.basicConfig(datefmt='', format='%asctime', level=logging.INFO)
+    logging.basicConfig(datefmt='', format='%asctime', level=logging.INFO)    :param fileName: nom du fichier dans lequel remplacer les liens
     :return: MAIN_LOGGER
+    :rtype: log
     """
     logging.config.fileConfig("AspiWebLog.conf")
     # definition du handler
@@ -48,7 +49,10 @@ def initVariables(logger):
     """
     Fonction qui initialise les variables en fonction de ce que l'utilisateur a entre.
     La fonction genere une info recapitulant la liste des parametres entres.
+    :param logger: logger
+    :type logger: log
     :return: ARGS
+    :rtype: list ?
     """
     PARSER = argparse.ArgumentParser(description='Aspirateur de site avec "AspiWeb"')
     # obligatoire
@@ -73,116 +77,41 @@ def initVariables(logger):
 
 
 # %%___________________________________________________________________________________________________
-#  Fonctions de creation de l'arbre du dossier et de comparaison
-
-
-# %%___________________________________________________________________________________________________
 #  Fonctions principales
 
 def loop(logger, args):
     """
-    fonction principale
+    Fonction principale
+    :param logger: logger
+    :param args: arguments entres en ligne de commande
+    :type logger: log
+    :type args: list
     :return: 1
+    :rtype: int
     """
     logger.info(
         ":\nLoop end if directory size reach: %d\n", args.sizeDirectory)
-    chaineTest = """
-    <!DOCTYPE html>
 
-<html>
-<head>
+    # Recuperation du contenu de la page html et enregistrement dans un fichier
+    r = req.get(args.url)  # recuperation de l'url
+    soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
+    prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
+    fM.fileWrite(args.savePath, "page.html", prettiSoup)
 
-	<meta charset="UTF-8">
-	<meta name="description" content="HelloWorld">
-	<meta name="keywords" content="keyworld exemple">
-	<meta name="author" content="Nicolas Sobczak">
-
-	<title>Hello World</title>
-
-	<link rel="stylesheet" type="text/css" href="firstStyle.css">
-
-</head>
-<body>
-
-	<h1 id="Haut"> Hello World !! </h1>
-
-	<p>blablabla</p>
-
-	<h2> Listes </h2>
-
-	<h3> Listes point </h3>
-	<ul>
-		<li>Coucou 1</li>
-		<li>Coucou 2</li>
-	</ul>
-
-
-	<h3> Listes n° </h3>
-	<ol>
-		<li>Coucou n°1</li>
-		<li>Coucou n°2</li>
-		<li>Coucou n°3</li>
-		<li>Coucou <b>ultime</b> </li>
-		<li>Coucou n°4</li>
-		<li>Coucou n°5</li>
-		<li>Coucou n°6</li>
-	</ol>
-
-
-	<h2> Liens vers autres pages </h2>
-
-		<h3>Hello world</h3>
-		<p>
-		<table width="20%"style="line-height: 20px; margin-left: 60px;" border="1">
-			<tr>	<!-- table row -->
-				<td>Vers page 2</td>	<!-- table data -->
-				<td> <a href="hello world p02.html"> <img width="20px" src="Boutons/bouton_suivant.jpg"> </a> <br/> </td>
-			</tr>
-			<tr>
-				<td>Vers page 3</td>
-				<td> <a href="hello world p03.html"> <img width="20px" src="Boutons/bouton_suivant.jpg"> </a> <br/> </td>
-			</tr>
-			<tr>
-				<td>Vers page 4</td>
-				<td> <a href="hello world p04.html"> <img width="20px" src="Boutons/bouton_suivant.jpg"> </a> <br/> </td>
-			</tr>
-		</table>
-		</p>
-
-		<h3>Moteurs de recherche</h3>
-		<p>
-		<table width="20%"style="line-height: 20px; margin-left: 60px;" border="1">
-			<tr>	<!-- table row -->
-				<td>Go to startpage</td>	<!-- table data -->
-				<td> <a target="_blank" href="https://www.startpage.com/"> <img width="20px" src="Boutons/bouton_suivant.jpg"> </a> <br/> </td>
-			</tr>
-			<tr>
-				<td>Go to google </td>
-				<td> <a target="_blank" href="https://www.google.com/"> <img width="20px" src="Boutons/bouton_suivant.jpg"> </a> </td>
-			</tr>
-		</table>
-		</p>
-
-
-
-
-	<h2> Chat </h2>
-	<h6> Image </h6>
-
-	<img src="coscat.jpeg">
-
-	<h2> End </h2>
-
-	Retour en haut de la page <a href="#Haut"> <img width="20px" src="Boutons/bouton_hautDePage.jpg"> </a>
-
-</body>
-</html>
-
-    """
-    fM.fileWrite(args.savePath, "page.html", args.url)
-
+    # Recuperation du contenu du fichier precedemment enregistre, analyse de ses liens et remplacement si necessaire
     logger.info(
         ":\nFichier lu: %s\n", fM.fileReplace("page.html", args.url))
+
+    # Test
+    # On recupere les liens sous la forme: images/code-couleur.gif
+    print("needLinkToBeReplace: 'images/code-couleur.gif' -> ",
+          fM.needLinkToBeReplace('images/code-couleur.gif', args.url))
+    print("needLinkToBeReplace: 'www.images.com/code-couleur.gif' -> ",
+          fM.needLinkToBeReplace('www.images.com/code-couleur.gif', args.url))
+    print("needLinkToBeReplace: 'https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true' -> ",
+          fM.needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', args.url))
+    print("needLinkToBeReplace: 'https://www.youtube.com/watch?v=M6JpxDebokM' -> ",
+          fM.needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', args.url))
 
     return 1
 
