@@ -20,10 +20,10 @@ from bs4 import BeautifulSoup
 
 def listOfLinks(url):
     """
-    Affiche le code html pour une url
+    Renvoie la liste des liens contenus dans une page html pour une url
     :param url: url du code html a afficher
     :type url: str
-    :return: return description
+    :return: return list of links contained in html page
     :rtype: list
     """
     try:
@@ -45,12 +45,44 @@ def listOfLinks(url):
         print("\nVeuillez entrer une url valide.\n")
         pass
 
+# %%___________________________________________________________________________________________________
+
+def listOfImages(url):
+    """
+    Renvoie la liste des images contenues dans une page html pour une url
+    :param url: url du code html a afficher
+    :type url: str
+    :return: return list of images contained in html page
+    :rtype: list
+    """
+    try:
+        r = req.get(url)  # recuperation de l'url
+        soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
+        prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
+        # print(prettiSoup + "\n")
+        images = soup.find_all('img')
+        # print(links + "\n")
+
+        # Creation de la liste
+        srcs = []
+        for img in images:
+            srcs += [img.get('src')]
+        #print(srcs)
+        return (srcs)
+
+    except:
+        print("\nVeuillez entrer une url valide.\n")
+        pass
+
 # %% Test
-# url = "http://localhost/EatMVC/index.php?action=accueil"
-# affiche(url)
+url = "http://localhost/EatMVC/index.php?action=accueil"
+listOfImages(url)
+listOfLinks(url)
 # url1 = ""
-# affiche(url1)
+# listOfImages(url1)
+# listOfLinks(url1)
 # url2 = "https://www.youtube.com/watch?v=3xQTJi2tqgk"
-# affiche(url2)
+# listOfImages(url2)
+# listOfLinks(url2)
 
 # %%___________________________________________________________________________________________________
