@@ -6,7 +6,7 @@
 @author: Julien Vermeil and Vincent Reaynaert and Nicolas Sobczak
 """
 
-# %%TODO : Tout le programme
+# %%TODO : Loop function
 #  ____________________________________________________________________________________________________
 #  Config
 
