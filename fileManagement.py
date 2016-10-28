@@ -133,7 +133,7 @@ def fileReplace(path, fileName, urlSiteAAspirer):
             refDomain = getDomain(urlSiteAAspirer)
             analyzedDomain = getDomain(link)
             print("\nlink.replace: ",
-                  link.replace(analyzedDomain, os.path.join(path, refDomain)))  # remplacement du lien dans la liste
+                  link.replace(analyzedDomain, path))  # remplacement du lien dans la liste
             # TODO: remplacement du lien dans le string "html"
 
     # %% Enregistrement du fichiers une fois les liens remplaces
