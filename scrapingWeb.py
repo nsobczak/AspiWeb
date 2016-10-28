@@ -10,6 +10,7 @@
 #  ____________________________________________________________________________________________________
 #  Config
 
+import urllib.request as ur
 import requests as req
 from bs4 import BeautifulSoup
 
@@ -34,6 +35,19 @@ def extractHTML(url):
         print("\nVeuillez entrer une url valide.\n")
         return None
         pass
+
+# %%___________________________________________________________________________________________________
+
+def downloadFile(urlFile, fileRegisterPath):
+    """
+    Renvoie le contenu d'une page html
+    :param urlFile: lien absolu vers l'image a telecharger
+    :param fileRegisterPath: path where you want to register your file (end whit the name of the file)
+    :type urlFile: str
+    :type fileRegisterPath: str
+    """
+    ur.urlretrieve(urlFile, fileRegisterPath)
+
 
 # %%___________________________________________________________________________________________________
 
