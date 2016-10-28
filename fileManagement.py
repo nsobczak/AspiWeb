@@ -109,34 +109,34 @@ def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
     return result
 
 
-def fileReplace(fileName, urlSiteAAspirer):
+def fileReplace(path, fileName, urlSiteAAspirer):
     """
     Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
+    :param path: chemin du fichier dans lequel ecrire
     :param fileName: nom du fichier dans lequel remplacer les liens
     :param urlSiteAAspirer: url du site a aspirer
+    :type path: str
     :type fileName: str
     :type urlSiteAAspirer: str
     :return: nothing
     :rtype: void
     """
 
-    # %% Repertoire             # os.path.join(path, fileName) si besoin
-    path = os.getcwd()
-
-    # %% Lecture
-    f = open(fileName, 'r')
-    html = f.readlines()
-    f.close()
+    # %%Recuperation du contenu de la page
+    html = sW.listOfLinks(urlSiteAAspirer)[0]
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    linkList = sW.listOfLinks(urlSiteAAspirer)
+    linkList = sW.listOfLinks(urlSiteAAspirer)[1]
     for link in linkList:
         print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
         if (needLinkToBeReplace(link, urlSiteAAspirer)):
             refDomain = getDomain(urlSiteAAspirer)
             analyzedDomain = getDomain(link)
-            link.replace(analyzedDomain, os.path.join(path, refDomain))
+            print("\nlink.replace: ",
+                  link.replace(analyzedDomain, os.path.join(path, refDomain)))  # remplacement du lien dans la liste
+            # TODO: remplacement du lien dans le string "html"
 
-    return html
+    # %% Enregistrement du fichiers une fois les liens remplaces
+    fileWrite(path, fileName, html)
 
 # %%___________________________________________________________________________________________________

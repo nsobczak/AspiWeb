@@ -39,7 +39,7 @@ def listOfLinks(url):
         for link in links:
             hrefs += [link.get('href')]
         #print(hrefs)
-        return (hrefs)
+        return (prettiSoup, hrefs)
 
     except:
         print("\nVeuillez entrer une url valide.\n")
