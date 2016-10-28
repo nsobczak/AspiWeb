@@ -124,13 +124,13 @@ def fileReplace(path, fileName, urlSiteAAspirer):
     """
 
     # %%Recuperation du contenu de la page
-    html = sW.listOfLinks(urlSiteAAspirer)[0]
+    html = sW.extractHTML(urlSiteAAspirer)
 
     # %% Enregistrement du fichier une fois les liens remplaces
-    fileWrite(path, fileName, html)
+    fileWrite(path, fileName, html.prettify())
 
     # %% Remplacement des liens s'ils doivent l'etre.
-    linkList = sW.listOfLinks(urlSiteAAspirer)[1]
+    linkList = sW.listOfLinks(html)
     for link in linkList:
         #print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
         if (needLinkToBeReplace(link, urlSiteAAspirer)):

@@ -40,3 +40,74 @@ Loop end if directory size reach: 100
 "28/10/2016 15:27:54 INFO loop :
 Fichier lu: ['<head>\n', ' <meta charset="utf-8"/>\n', ' <link href="Contenu/StyleCotcotRecuite.css" rel="stylesheet"/>\n', ' <title>\n', ' </title>\n', '</head>\n', '<body>\n', ' <div id="global">\n', '  <header>\n', '   <a href="index.php?action=accueil">\n', '    <h1 id="titreSite">\n', '     CotcotRecuite.com\n', '    </h1>\n', '   </a>\n', '   <!--\n', '\n', '    <ul>\n', '\n', '        <li><a href="Routeur.php?action=recherche">Recherche</a></li>\n', '\n', '        <li class="dropdown">\n', '\n', '            <a href="#" class="dropbtn">Recette</a>\n', '\n', '            <div class="dropdown-content">\n', '\n', '                <a href="Routeur.php?action=recette&id=curry">Curry</a>\n', '\n', '                <a href="Routeur.php?action=recette&id=coco">Coco</a>\n', '\n', '            </div>\n', '\n', '        </li>\n', '\n', '        <li><a href="Routeur.php?action=contact">Contacts</a></li>\n', '\n', '        <li><a href="Routeur.php?action=inscription">Inscription</a></li>\n', '\n', '    </ul>\n', '\n', '    -->\n', '  </header>\n', '  <div id="contenu">\n', '   <section id="logo">\n', '    <img alt="portrait" class="display" src="Images/Cook.png" title="Kirby" width="25%"/>\n', '   </section>\n', '  </div>\n', '  <!-- #contenu -->\n', '  <footer id="piedPage">\n', '   <a href="https://www.youtube.com/watch?v=4WbY1V-hnaw" target="_blank">\n', '    <p>\n', '     Petite chanson\n', '    </p>\n', '   </a>\n', '  </footer>\n', ' </div>\n', ' <!-- #global -->\n', '</body>']
 "
+"28/10/2016 22:39:43 INFO initLog Programme lance"
+"28/10/2016 22:39:43 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://localhost/EatMVC/index.php?action=accueil 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"28/10/2016 22:39:43 INFO loop :
+Loop end if directory size reach: 100
+"
+"28/10/2016 22:39:43 INFO loop :
+Lecture du fichier et analyse de ses liens en cours
+"
+"28/10/2016 22:39:43 INFO loop :
+End of loop function"
+"28/10/2016 22:53:13 INFO initLog Programme lance"
+"28/10/2016 22:53:13 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://localhost/EatMVC/index.php?action=accueil 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"28/10/2016 22:53:13 INFO loop :
+Loop end if directory size reach: 100
+"
+"28/10/2016 22:53:13 INFO loop repertoire deja existant"
+"28/10/2016 22:53:13 INFO loop :
+Lecture du fichier et analyse de ses liens en cours
+"
+"28/10/2016 22:53:13 INFO loop :
+End of loop function"
+"28/10/2016 22:56:33 INFO initLog Programme lance"
+"28/10/2016 22:56:33 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://localhost/EatMVC/index.php?action=accueil 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"28/10/2016 22:56:33 INFO loop :
+Loop end if directory size reach: 100
+"
+"28/10/2016 22:56:33 INFO loop repertoire deja existant"
+"28/10/2016 22:56:33 INFO loop :
+Lecture du fichier et analyse de ses liens en cours
+"
+"28/10/2016 22:56:33 INFO loop :
+End of loop function"
+"28/10/2016 23:29:43 INFO initLog Programme lance"
+"28/10/2016 23:29:43 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://localhost/TestPhpStorm/CotcotRecuite.html 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"28/10/2016 23:29:43 INFO loop :
+Loop end if directory size reach: 100
+"
+"28/10/2016 23:29:43 INFO loop repertoire deja existant"
+"28/10/2016 23:29:43 INFO loop :
+Lecture du fichier et analyse de ses liens en cours
+"
+"28/10/2016 23:29:43 INFO loop :
+End of loop function"

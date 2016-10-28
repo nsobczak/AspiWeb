@@ -17,61 +17,66 @@ from bs4 import BeautifulSoup
 # %% ____________________________________________________________________________________________________
 #   ____________________________________________________________________________________________________
 #   Fonctions
-
-def listOfLinks(url):
+def extractHTML(url):
     """
     Renvoie la liste des liens contenus dans une page html pour une url
     :param url: url du code html a afficher
     :type url: str
-    :return: return content of an html page and its list of links
+    :return: return content of an html page
+    :rtype: bs4.BeautifulSoup
+    """
+    r = req.get(url)  # recuperation de l'url
+    soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
+    #prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
+    return soup
+
+
+# %%___________________________________________________________________________________________________
+
+def listOfLinks(soup):
+    """
+    Renvoie la liste des liens contenus dans une page html pour une url
+    :param soup: url du code html a afficher
+    :type : bs4.BeautifulSoup
+    :return: return list of links of the html code
     :rtype: list
     """
     try:
-        r = req.get(url)  # recuperation de l'url
-        soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
-        prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
-        # print(prettiSoup + "\n")
         links = soup.find_all('a')
-        # print(links + "\n")
 
         # Creation de la liste
         hrefs = []
         for link in links:
             hrefs += [link.get('href')]
-        #print(hrefs)
-        return (prettiSoup, hrefs)
+        return (hrefs)
 
     except:
         print("\nVeuillez entrer une url valide.\n")
+        return None
         pass
 
 # %%___________________________________________________________________________________________________
 
-def listOfImages(url):
+def listOfImages(soup):
     """
     Renvoie la liste des images contenues dans une page html pour une url
-    :param url: url du code html a afficher
-    :type url: str
+    :param soup: code html a traiter
+    :type soup: bs4.BeautifulSoup
     :return: return list of images contained in html page
     :rtype: list
     """
     try:
-        r = req.get(url)  # recuperation de l'url
-        soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
-        prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
-        # print(prettiSoup + "\n")
         images = soup.find_all('img')
-        # print(links + "\n")
 
         # Creation de la liste
         srcs = []
         for img in images:
             srcs += [img.get('src')]
-        #print(srcs)
         return (srcs)
 
     except:
         print("\nVeuillez entrer une url valide.\n")
+        return None
         pass
 
 # %% Test

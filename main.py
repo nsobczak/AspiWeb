@@ -108,14 +108,14 @@ def loop(logger, args):
 
     # %% Tests
     # On recupere les liens sous la forme: images/code-couleur.gif
-    print("needLinkToBeReplace: 'images/code-couleur.gif' -> ",
-          fM.needLinkToBeReplace('images/code-couleur.gif', args.url))
-    print("needLinkToBeReplace: 'www.images.com/code-couleur.gif' -> ",
-          fM.needLinkToBeReplace('www.images.com/code-couleur.gif', args.url))
-    print("needLinkToBeReplace: 'https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true' -> ",
-          fM.needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', args.url))
-    print("needLinkToBeReplace: 'https://www.youtube.com/watch?v=M6JpxDebokM' -> ",
-          fM.needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', args.url))
+    # print("needLinkToBeReplace: 'images/code-couleur.gif' -> ",
+    #       fM.needLinkToBeReplace('images/code-couleur.gif', args.url))
+    # print("needLinkToBeReplace: 'www.images.com/code-couleur.gif' -> ",
+    #       fM.needLinkToBeReplace('www.images.com/code-couleur.gif', args.url))
+    # print("needLinkToBeReplace: 'https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true' -> ",
+    #       fM.needLinkToBeReplace('https://github.com/nsobczak/AspiWeb/projects/1?fullscreen=true', args.url))
+    # print("needLinkToBeReplace: 'https://www.youtube.com/watch?v=M6JpxDebokM' -> ",
+    #       fM.needLinkToBeReplace('https://www.youtube.com/watch?v=M6JpxDebokM', args.url))
 
     logger.info(":\nEnd of loop function")
 
