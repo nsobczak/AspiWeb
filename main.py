@@ -3,7 +3,7 @@
 # AspiWeb #
 ###########
 
-@author: Julien Vermeil and Vincent Reaynaert and Nicolas Sobczak
+@author: Julien Vermeil and Vincent Reynaert and Nicolas Sobczak
 """
 
 # %%TODO : Loop function
