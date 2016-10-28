@@ -106,7 +106,7 @@ def loop(logger, args):
 
 
 
-    # Test
+    # %% Tests
     # On recupere les liens sous la forme: images/code-couleur.gif
     print("needLinkToBeReplace: 'images/code-couleur.gif' -> ",
           fM.needLinkToBeReplace('images/code-couleur.gif', args.url))

@@ -13,6 +13,7 @@
 # Import
 import os
 import scrapingWeb as sW
+import fileinput
 
 
 # %% ____________________________________________________________________________________________________
@@ -125,18 +126,21 @@ def fileReplace(path, fileName, urlSiteAAspirer):
     # %%Recuperation du contenu de la page
     html = sW.listOfLinks(urlSiteAAspirer)[0]
 
+    # %% Enregistrement du fichier une fois les liens remplaces
+    fileWrite(path, fileName, html)
+
     # %% Remplacement des liens s'ils doivent l'etre.
     linkList = sW.listOfLinks(urlSiteAAspirer)[1]
     for link in linkList:
-        print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
+        #print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
         if (needLinkToBeReplace(link, urlSiteAAspirer)):
             refDomain = getDomain(urlSiteAAspirer)
             analyzedDomain = getDomain(link)
             print("\nlink.replace: ",
                   link.replace(analyzedDomain, path))  # remplacement du lien dans la liste
-            # TODO: remplacement du lien dans le string "html"
-
-    # %% Enregistrement du fichiers une fois les liens remplaces
-    fileWrite(path, fileName, html)
+            # remplacement du lien dans le fichier contenant le html
+            with fileinput.FileInput(fileName, inplace=True) as file:
+                for line in file:
+                    print(line.replace(analyzedDomain, path), end='')
 
 # %%___________________________________________________________________________________________________
