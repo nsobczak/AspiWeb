@@ -46,6 +46,24 @@ but = aspirer un site
 
 - fileReplace(fileName):
     Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
+    
+### module scrapingWeb
+
+- extractHTML(url):
+    Renvoie la liste des liens contenus dans une page html pour une url
+
+- downloadFile(urlFile, fileRegisterPath):
+    Renvoie le contenu d'une page html
+    
+- listOfLinks(soup):
+    Renvoie la liste des liens contenus dans une page html pour une url
+
+- listOfPictures(soup):
+    Renvoie la liste des images contenues dans une page html pour une url
+
+- downloadAllPictures(soup, destinationPath):
+    telecharge toutes les images possibles du code html contenu dans soup
+
 
 ### Main
 
