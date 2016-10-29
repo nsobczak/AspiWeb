@@ -42,10 +42,25 @@ but = aspirer un site
 ### module fileManagement
 
 - fileWrite(path, fileName, chaineAEcrire):
-    fonction qui ecrit une chaine de caracteres dans un fichier
+    Fonction qui ecrit une chaine de caracteres dans un fichier
 
-- fileReplace(fileName):
-    Fonction qui remplace les noms de domaines externes d'un fichier html par un un nom de domaine interne
+- isLinkRelativ(link):
+    Fonction qui analyse si un lien est relatif ou pas
+    
+- getDomain(link):
+    Fonction qui recupere le nom de domaine du site a partir de son url
+    
+- needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
+    Fonction qui examine un lien et determine s'il doit etre remplace par un lien local ou ignore s'il s'agit d'un lien externe
+    
+- fileLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup):
+    Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
+    
+- filePictureLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup):
+    Fonction qui remplace les liens des images
+    
+- fileReplace(path, fileName, urlSiteAAspirer):
+    Fonction qui remplace les liens
     
 ### module scrapingWeb
 
