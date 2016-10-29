@@ -12,6 +12,7 @@
 
 import urllib.request as ur
 import requests as req
+import os
 from bs4 import BeautifulSoup
 
 
@@ -86,6 +87,29 @@ def listOfPictures(soup):
     for img in images:
         srcs += [img.get('src')]
     return (srcs)
+
+# %%___________________________________________________________________________________________________
+
+def downloadAllPictures(soup, destinationPath):
+    """
+    telecharge toutes les images possibles du code html contenu dans soup
+    :param soup: code html a traiter
+    :type soup: bs4.BeautifulSoup
+    :param destinationPath: chemin du dossier dans lequel on souhaite enregistrer les images
+    :type destinationPath: str
+    """
+    listImgs = listOfPictures(soup)
+    for img in listImgs:
+        imgUrl = img.get('src')
+        try :
+            imgName = imgUrl.split('/')[-1]
+            filename = os.path.join(destinationPath, imgName)
+            downloadFile(imgUrl,filename)
+            print(imgUrl.split('/')[-1])
+        except :
+            continue
+
+# %%___________________________________________________________________________________________________
 
 # %% Test
 # url = "http://localhost/TestPhpStorm/index.php"
