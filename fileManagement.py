@@ -110,6 +110,75 @@ def needLinkToBeReplace(stringAAnalyser, urlSiteAAspirer):
     return result
 
 
+# %%___________________________________________________________________________________________________
+
+def fileLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup):
+    """
+    Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
+    :param path: chemin du fichier dans lequel ecrire
+    :param fileName: nom du fichier dans lequel remplacer les liens
+    :param urlSiteAAspirer: url du site a aspirer
+    :param htmlSoup: url du site a aspirer
+    :type path: str
+    :type fileName: str
+    :type urlSiteAAspirer: str
+    :type htmlSoup: BeautifulSoup
+    :return: nothing
+    :rtype: void
+    """
+
+    # %% Remplacement des liens autre que les images s'ils doivent l'etre.
+    linkList = sW.listOfLinks(htmlSoup)
+    for link in linkList:
+        # print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
+        if (needLinkToBeReplace(link, urlSiteAAspirer)):
+            refDomain = getDomain(urlSiteAAspirer)
+            analyzedDomain = getDomain(link)
+            print("\nlink.replace: ",
+                  link.replace(analyzedDomain, path))  # remplacement du lien dans la liste
+            # remplacement du lien dans le fichier contenant le html
+            with fileinput.FileInput(fileName, inplace=True) as file:
+                for line in file:
+                    print(line.replace(analyzedDomain, path), end='')
+
+
+# %%___________________________________________________________________________________________________
+
+def filePictureLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup):
+    """
+    Fonction qui remplace les liens des images
+    :param path: chemin du fichier dans lequel ecrire
+    :param fileName: nom du fichier dans lequel remplacer les liens
+    :param urlSiteAAspirer: url du site a aspirer
+    :param htmlSoup: url du site a aspirer
+    :type path: str
+    :type fileName: str
+    :type urlSiteAAspirer: str
+    :type htmlSoup: BeautifulSoup
+    :return: nothing
+    :rtype: void
+    """
+
+
+    # %% Remplacement des liens autre que les images s'ils doivent l'etre.
+    linkList = sW.listOfPictures(htmlSoup)
+    print("\nlinkList : ", linkList)
+    print("a remplacer\n")
+    # for link in linkList:
+    #     # print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
+    #     if (needLinkToBeReplace(link, urlSiteAAspirer)):
+    #         refDomain = getDomain(urlSiteAAspirer)
+    #         analyzedDomain = getDomain(link)
+    #         print("\nlink.replace: ",
+    #               link.replace(analyzedDomain, path))  # remplacement du lien dans la liste
+    #         # remplacement du lien dans le fichier contenant le html
+    #         with fileinput.FileInput(fileName, inplace=True) as file:
+    #             for line in file:
+    #                 print(line.replace(analyzedDomain, path), end='')
+
+
+# %%___________________________________________________________________________________________________
+
 def fileReplace(path, fileName, urlSiteAAspirer):
     """
     Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
@@ -124,23 +193,11 @@ def fileReplace(path, fileName, urlSiteAAspirer):
     """
 
     # %%Recuperation du contenu de la page
-    html = sW.extractHTML(urlSiteAAspirer)
+    htmlSoup = sW.extractHTML(urlSiteAAspirer)
 
     # %% Enregistrement du fichier une fois le contenu de la page extrait
-    fileWrite(path, fileName, html.prettify())
+    fileWrite(path, fileName, htmlSoup.prettify())
 
-    # %% Remplacement des liens autre que les images s'ils doivent l'etre.
-    linkList = sW.listOfLinks(html)
-    for link in linkList:
-        # print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
-        if (needLinkToBeReplace(link, urlSiteAAspirer)):
-            refDomain = getDomain(urlSiteAAspirer)
-            analyzedDomain = getDomain(link)
-            print("\nlink.replace: ",
-                  link.replace(analyzedDomain, path))  # remplacement du lien dans la liste
-            # remplacement du lien dans le fichier contenant le html
-            with fileinput.FileInput(fileName, inplace=True) as file:
-                for line in file:
-                    print(line.replace(analyzedDomain, path), end='')
+    fileLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup)
 
-# %%___________________________________________________________________________________________________
+    filePictureLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup)

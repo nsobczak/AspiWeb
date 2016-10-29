@@ -71,7 +71,7 @@ def listOfLinks(soup):
 
 # %%___________________________________________________________________________________________________
 
-def listOfImages(soup):
+def listOfPictures(soup):
     """
     Renvoie la liste des images contenues dans une page html pour une url
     :param soup: code html a traiter
@@ -87,17 +87,18 @@ def listOfImages(soup):
         srcs += [img.get('src')]
     return (srcs)
 
-
 # %% Test
 # url = "http://localhost/TestPhpStorm/index.php"
 # soup = extractHTML(url)
-# print(listOfImages(soup))
+# print(listOfPictures(soup))
 # print(listOfLinks(soup))
+#
 # url1 = ""
-# listOfImages(url1)
+# listOfPictures(url1)
 # listOfLinks(url1)
+#
 # url2 = "https://www.youtube.com/watch?v=3xQTJi2tqgk"
-# listOfImages(url2)
+# listOfPictures(url2)
 # listOfLinks(url2)
 
 # %%___________________________________________________________________________________________________
