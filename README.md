@@ -29,7 +29,7 @@ but = aspirer un site
 |urllib2| python 2|
 |os|python 3|
 |argpase|python 3|
-|sys||
+|sys|python 3|
 |bs4|python 3|
 
 
