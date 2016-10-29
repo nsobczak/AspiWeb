@@ -104,8 +104,6 @@ def loop(logger, args):
     logger.info(":\nLecture du fichier et analyse de ses liens en cours\n")
     fM.fileReplace(os.path.join(args.savePath, domain), "index.html", args.url)
 
-
-
     # %% Tests
     # On recupere les liens sous la forme: images/code-couleur.gif
     # print("needLinkToBeReplace: 'images/code-couleur.gif' -> ",

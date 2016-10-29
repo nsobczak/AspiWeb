@@ -126,13 +126,13 @@ def fileReplace(path, fileName, urlSiteAAspirer):
     # %%Recuperation du contenu de la page
     html = sW.extractHTML(urlSiteAAspirer)
 
-    # %% Enregistrement du fichier une fois les liens remplaces
+    # %% Enregistrement du fichier une fois le contenu de la page extrait
     fileWrite(path, fileName, html.prettify())
 
-    # %% Remplacement des liens s'ils doivent l'etre.
+    # %% Remplacement des liens autre que les images s'ils doivent l'etre.
     linkList = sW.listOfLinks(html)
     for link in linkList:
-        #print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
+        # print(link, needLinkToBeReplace(link, urlSiteAAspirer), "\n")
         if (needLinkToBeReplace(link, urlSiteAAspirer)):
             refDomain = getDomain(urlSiteAAspirer)
             analyzedDomain = getDomain(link)

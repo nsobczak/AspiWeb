@@ -26,15 +26,16 @@ def extractHTML(url):
     :return: return content of an html page
     :rtype: bs4.BeautifulSoup
     """
-    try :
+    try:
         r = req.get(url)  # recuperation de l'url
         soup = BeautifulSoup(r.content, "html.parser")  # recuperation du contenu de l'url
-        #prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
+        # prettiSoup = soup.prettify()  # mise en forme du contenu de l'url
         return soup
     except:
         print("\nVeuillez entrer une url valide.\n")
         return None
         pass
+
 
 # %%___________________________________________________________________________________________________
 
@@ -68,7 +69,6 @@ def listOfLinks(soup):
     return (hrefs)
 
 
-
 # %%___________________________________________________________________________________________________
 
 def listOfImages(soup):
@@ -89,10 +89,10 @@ def listOfImages(soup):
 
 
 # %% Test
-url = "http://localhost/TestPhpStorm/index.php"
-soup = extractHTML(url)
-print(listOfImages(soup))
-print(listOfLinks(soup))
+# url = "http://localhost/TestPhpStorm/index.php"
+# soup = extractHTML(url)
+# print(listOfImages(soup))
+# print(listOfLinks(soup))
 # url1 = ""
 # listOfImages(url1)
 # listOfLinks(url1)
