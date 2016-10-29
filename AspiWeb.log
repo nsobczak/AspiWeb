@@ -180,3 +180,32 @@ Loop end if directory size reach: 100
 "29/10/2016 11:16:20 INFO loop :
 Lecture du fichier et analyse de ses liens en cours
 "
+"29/10/2016 14:22:25 INFO initLog Programme lance"
+"29/10/2016 14:22:25 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://earoky.deviantart.com/ 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"29/10/2016 14:22:25 INFO loop :
+Loop end if directory size reach: 100
+"
+"29/10/2016 14:22:25 INFO loop repertoire deja existant"
+"29/10/2016 14:23:21 INFO initLog Programme lance"
+"29/10/2016 14:23:21 INFO initVariables :
+path to the directory where to save the downloaded website: C:\Users\vvinc_000\Desktop
+url of the website to download: http://earoky.deviantart.com/ 
+path to the configuration file of the logger: AspiwebLog.conf
+depth of the tree: 2
+max size of a downloadable file: 10
+size max of the directory where to download the website: 100
+"
+"29/10/2016 14:23:21 INFO loop :
+Loop end if directory size reach: 100
+"
+"29/10/2016 14:23:21 INFO loop repertoire deja existant"
+"29/10/2016 14:23:34 INFO loop :
+Lecture du fichier et analyse de ses liens en cours
+"

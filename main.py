@@ -15,6 +15,7 @@ import logging
 import logging.config
 import argparse
 import fileManagement as fM
+import scrapingWeb as sW
 import os
 import sys
 import urllib
@@ -94,12 +95,16 @@ def loop(logger, args):
 
     # Creation des dossiers necessaires
     domain = fM.getDomain(args.url)
+    picturesDir = os.path.join(args.savePath, domain, "pictures")
     try:
-        os.makedirs(os.path.join(args.savePath, domain, "pictures"),
+        os.makedirs(picturesDir,
                     mode=0o0777)  # Ne marche que si les repertoires n'ont pas deja ete crees
     except:
         logger.info("repertoire deja existant")
 
+    # Enregistre les images de la page dans le dossier pictures cree precedemment
+    soup = sW.extractHTML(args.url)
+    sW.downloadAllPictures(soup, picturesDir)
     # Recuperation du contenu du fichier precedemment enregistre, analyse de ses liens et remplacement si necessaire
     logger.info(":\nLecture du fichier et analyse de ses liens en cours\n")
     fM.fileReplace(os.path.join(args.savePath, domain), "index.html", args.url)

@@ -99,8 +99,7 @@ def downloadAllPictures(soup, destinationPath):
     :type destinationPath: str
     """
     listImgs = listOfPictures(soup)
-    for img in listImgs:
-        imgUrl = img.get('src')
+    for imgUrl in listImgs:
         try :
             imgName = imgUrl.split('/')[-1]
             filename = os.path.join(destinationPath, imgName)
