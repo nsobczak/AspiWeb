@@ -181,7 +181,7 @@ def filePictureLinksReplace(path, fileName, urlSiteAAspirer, htmlSoup):
 
 def fileReplace(path, fileName, urlSiteAAspirer):
     """
-    Fonction qui remplace les noms de domaines externes d'un fichier html par un nom de domaine interne
+    Fonction qui remplace les liens
     :param path: chemin du fichier dans lequel ecrire
     :param fileName: nom du fichier dans lequel remplacer les liens
     :param urlSiteAAspirer: url du site a aspirer
