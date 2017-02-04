@@ -1,8 +1,5 @@
-# Aspirateur
-Python course - TP02
-
 ## AspiWeb
-but = aspirer un site
+but = aspirer un site sur un ordinateur local
 
 ### parametres
 
@@ -14,23 +11,6 @@ but = aspirer un site
 |profondeur maxi de l'arbre à parcourir|optionnel|"-d", "--depth"|
 |taille maxi du fichier que l'on peut télécharger|optionnel|"-sf", "--sizeFile"|
 |taille maxi que le dossier dans lequel on met le site ne doit pas dépasser|optionnel|"-sd", "--sizeDirectory"|
-
-
-### imposé
-
-- module logging
-- main
-
-### piste
-
-|Librairie|Disponibilité|
-|---|---|
-|urllib| python 2|
-|urllib2| python 2|
-|os|python 3|
-|argpase|python 3|
-|sys|python 3|
-|bs4|python 3|
 
 
 ## Architecture
